@@ -4,7 +4,7 @@ export function initialize(instance) {
   const config = instance.container.lookupFactory('config:environment');
 
   // Default to true when not set
-  const _includeRouteName = !(config['ember-body-class'].includeRouteName === false);
+  const _includeRouteName = config['ember-body-class'].includeRouteName !== false;
 
   Ember.Route.reopen({
     bodyClasses: [],

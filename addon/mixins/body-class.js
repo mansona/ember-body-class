@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
   actions: {
-    loading(transition, route) {
+    loading(/* transition, route */) {
       Ember.$('body').addClass("loading");
 
       this.router.on('didTransition', function() {
@@ -12,7 +12,7 @@ export default Ember.Mixin.create({
       return true;
     },
 
-    error: function(error, transition) {
+    error: function(/* error, transition */) {
       Ember.$('body').addClass("error");
 
       this.router.on('didTransition', function() {
