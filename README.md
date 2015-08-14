@@ -3,7 +3,7 @@
 
 # ember-body-class
 
-CSS classes on the `<body>` for your routes, as well as loading and error states.
+Easily add CSS classes on the `<body>`, including route names as well as loading and error states.
 
 ## Installation
 
