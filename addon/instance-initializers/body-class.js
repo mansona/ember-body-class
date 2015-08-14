@@ -6,7 +6,7 @@ export function initialize(instance) {
   // Default to true when not set
   let _includeRouteName = true;
   if (config['ember-body-class'] && config['ember-body-class'].includeRouteName === false) {
-    _includeRouteName = false
+    _includeRouteName = false;
   }
 
   Ember.Route.reopen({
