@@ -9,7 +9,7 @@ export function initialize(instance) {
   Ember.Route.reopen({
     bodyClasses: [],
 
-    activate: function() {
+    addClasses: Ember.on('activate', function() {
       const $body = Ember.$('body');
       this.get('bodyClasses').forEach(function(klass) {
         $body.addClass(klass);
@@ -18,9 +18,9 @@ export function initialize(instance) {
       if (_includeRouteName) {
         $body.addClass(this.get('routeName'));
       }
-    },
+    }),
 
-    deactivate: function() {
+    removeClasses: Ember.on('deactivate', function() {
       const $body = Ember.$('body');
       this.get('bodyClasses').forEach(function(klass) {
         $body.removeClass(klass);
@@ -29,7 +29,7 @@ export function initialize(instance) {
       if (_includeRouteName) {
         $body.removeClass(this.get('routeName'));
       }
-    },
+    }),
   });
 }
 
