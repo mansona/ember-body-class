@@ -1,7 +1,7 @@
 {
   "name": "ember-body-class",
   "version": "0.3.6",
-  "description": "Easily add CSS classes to the body for your routes.",
+  "description": "Easily add CSS classes to the body, including route names and loading/error states.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -45,7 +45,9 @@
     "ember-cli",
     "CSS",
     "class",
-    "body"
+    "body",
+    "loading",
+    "error"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
