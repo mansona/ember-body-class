@@ -31,12 +31,12 @@ export default Ember.Route.extend(BodyClassMixin, { });
 ```
 
 ### Custom classes
-All routes have a `bodyClasses` attribute of type Array. If you wanted to add a
-class `strawberry-jam` to your application route, it would look like this:
+All routes have a `classNames` attribute of type Array. If you wanted to add a
+class `strawberry-jam` to your route, it would look like this:
 
 ```
 export default Ember.Route.extend({
-  bodyClasses: ["strawberry-jam"]
+  classNames: ["strawberry-jam"]
 })
 ```
 

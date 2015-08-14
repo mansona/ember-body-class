@@ -7,12 +7,15 @@ export function initialize(instance) {
   const _includeRouteName = config['ember-body-class'].includeRouteName !== false;
 
   Ember.Route.reopen({
-    bodyClasses: [],
+    classNames: [],
+    bodyClasses: [], // Backwards compatibility
 
     addClasses: Ember.on('activate', function() {
       const $body = Ember.$('body');
-      this.get('bodyClasses').forEach(function(klass) {
-        $body.addClass(klass);
+      ['bodyClasses', 'classNames'].forEach((classes) => {
+        this.get(classes).forEach(function(klass) {
+          $body.addClass(klass);
+        });
       });
 
       if (_includeRouteName) {
@@ -22,8 +25,10 @@ export function initialize(instance) {
 
     removeClasses: Ember.on('deactivate', function() {
       const $body = Ember.$('body');
-      this.get('bodyClasses').forEach(function(klass) {
-        $body.removeClass(klass);
+      ['bodyClasses', 'classNames'].forEach((classes) => {
+        this.get(classes).forEach(function(klass) {
+          $body.removeClass(klass);
+        });
       });
 
       if (_includeRouteName) {
