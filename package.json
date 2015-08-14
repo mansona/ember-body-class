@@ -1,7 +1,7 @@
 {
   "name": "ember-body-class",
   "version": "0.2.0",
-  "description": "Work in progress.",
+  "description": "Easily add CSS classes to the body for your routes.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,14 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AddJam/ember-body-class"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Add Jam",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
@@ -38,12 +41,17 @@
   },
   "keywords": [
     "ember-addon",
-    "wip"
+    "ember",
+    "ember-cli",
+    "CSS",
+    "class",
+    "body"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "homepage": "https://github.com/AddJam/ember-body-class"
 }
