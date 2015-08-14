@@ -44,7 +44,7 @@ module.exports = function(environment) {
   }
 
   ENV['ember-body-class'] = {
-    includeRouteName: true
+    //includeRouteName: false
   }
 
   return ENV;

@@ -1,29 +1,32 @@
 import Ember from 'ember';
 
-export function initialize(/* container, application */) {
+export function initialize(instance) {
+  const config = instance.container.lookupFactory('config:environment');
+
+  // Default to true when not set
+  const _includeRouteName = !(config['ember-body-class'].includeRouteName === false);
+
   Ember.Route.reopen({
     bodyClasses: [],
 
     activate: function() {
-      const config = this.container.lookupFactory('config:environment');
       const $body = Ember.$('body');
       this.get('bodyClasses').forEach(function(klass) {
         $body.addClass(klass);
       });
 
-      if (config['ember-body-class'].includeRouteName) {
+      if (_includeRouteName) {
         $body.addClass(this.get('routeName'));
       }
     },
 
     deactivate: function() {
-      const config = this.container.lookupFactory('config:environment');
       const $body = Ember.$('body');
       this.get('bodyClasses').forEach(function(klass) {
         $body.removeClass(klass);
       });
 
-      if (config['ember-body-class'].includeRouteName) {
+      if (_includeRouteName) {
         $body.removeClass(this.get('routeName'));
       }
     },

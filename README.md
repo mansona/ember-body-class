@@ -1,27 +1,52 @@
-*Work in Progress*
+[![npm version](https://badge.fury.io/js/ember-body-class.svg)](http://badge.fury.io/js/ember-body-class)
 
-# Ember-body-class
+# ember-body-class
 
-This README outlines the details of collaborating on this Ember addon.
+CSS classes on the `<body>` for your routes, as well as loading and error states.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install ember-body-class`
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+### Route name classes
 
-## Running Tests
+By default, all of your routes will include CSS class names. This works for the
+whole hierarchy, so if you have a route nested at `application/dashboard/stats`,
+then you'll end up with `application`, `dashboard`, and `stats` classes.
 
-* `ember test`
-* `ember test --server`
+To disable this, see _options_ below.
 
-## Building
+### Custom classes
+All routes have a `bodyClasses` attribute of type Array. If you wanted to add a
+class `strawberry-jam` to your application route, it would look like this:
 
-* `ember build`
+```
+export default Ember.Route.extend({
+  bodyClasses: ["strawberry-jam"]
+})
+```
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+## Options
+
+You can disable route name classes being added in your environment.js like this.
+
+```
+ENV['ember-body-class'] = {
+  includeRouteName: false
+}
+```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
