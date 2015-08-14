@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import BodyClassMixin from '../../../mixins/body-class';
+import BodyClassMixin from 'ember-body-class/mixins/body-class';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | body class');
