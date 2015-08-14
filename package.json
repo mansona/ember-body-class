@@ -1,6 +1,6 @@
 {
   "name": "ember-body-class",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Easily add CSS classes to the body for your routes.",
   "directories": {
     "doc": "doc",
