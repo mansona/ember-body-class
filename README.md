@@ -1,4 +1,5 @@
 [![npm version](https://badge.fury.io/js/ember-body-class.svg)](http://badge.fury.io/js/ember-body-class)
+[![Travis CI](https://travis-ci.org/AddJam/ember-body-class.svg)](https://travis-ci.org/AddJam/ember-body-class)
 
 # ember-body-class
 
