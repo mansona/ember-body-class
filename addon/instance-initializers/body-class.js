@@ -22,7 +22,8 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        $body.addClass(this.get('routeName'));
+        let routeName = this.get('routeName').split('.').get('lastObject');
+        $body.addClass(routeName);
       }
     }),
 
@@ -35,7 +36,8 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        $body.removeClass(this.get('routeName'));
+        let routeName = this.get('routeName').split('.').get('lastObject');
+        $body.removeClass(routeName);
       }
     }),
   });
