@@ -18,6 +18,18 @@ then you'll end up with `application`, `dashboard`, and `stats` classes.
 
 To disable this, see _options_ below.
 
+### Loading & Error classes
+
+Adding the `loading` and `error` classes requires you to include a mixin in your
+application route. Include it like this:
+
+```
+import Ember from 'ember';
+import BodyClassMixin from 'ember-body-class/mixins/body-class';
+
+export default Ember.Route.extend(BodyClassMixin, { });
+```
+
 ### Custom classes
 All routes have a `bodyClasses` attribute of type Array. If you wanted to add a
 class `strawberry-jam` to your application route, it would look like this:
