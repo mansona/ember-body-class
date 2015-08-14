@@ -1,7 +1,7 @@
 {
   "name": "ember-body-class",
   "version": "0.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Work in progress",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -37,7 +37,7 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
-    "ember-addon"
+    "wip"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
