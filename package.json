@@ -1,7 +1,7 @@
 {
   "name": "ember-body-class",
   "version": "0.1.0",
-  "description": "Work in progress",
+  "description": "Work in progress.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -37,6 +37,7 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
+    "ember-addon",
     "wip"
   ],
   "dependencies": {
