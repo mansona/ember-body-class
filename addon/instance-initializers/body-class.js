@@ -1,7 +1,14 @@
 import Ember from 'ember';
 
 export function initialize(instance) {
-  const config = instance.container.lookupFactory('config:environment');
+  var config;
+  if (instance.resolveRegistration) {
+    // Ember 2.1+
+    // http://emberjs.com/blog/2015/08/16/ember-2-1-beta-released.html#toc_registry-and-container-reform
+    config = instance.resolveRegistration('config:environment');
+  } else {
+    config = instance.container.lookupFactory('config:environment');
+  }
 
   // Default to true when not set
   let _includeRouteName = true;
@@ -13,6 +20,11 @@ export function initialize(instance) {
     classNames: [],
     bodyClasses: [], // Backwards compatibility
 
+    _getRouteName() {
+      const nameParts = this.get('routeName').split('.');
+      return nameParts[nameParts.length - 1];
+    },
+
     addClasses: Ember.on('activate', function() {
       const $body = Ember.$('body');
       ['bodyClasses', 'classNames'].forEach((classes) => {
@@ -22,8 +34,7 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        let routeName = this.get('routeName').split('.').get('lastObject');
-        $body.addClass(routeName);
+        $body.addClass(this._getRouteName());
       }
     }),
 
@@ -36,8 +47,7 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        let routeName = this.get('routeName').split('.').get('lastObject');
-        $body.removeClass(routeName);
+        $body.removeClass(this._getRouteName());
       }
     }),
   });
