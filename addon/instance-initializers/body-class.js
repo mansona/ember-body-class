@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export function initialize(instance) {
+  if (!Ember.$) { // No jquery in fastboot
+    return;
+  }
+
   var config;
   if (instance.resolveRegistration) {
     // Ember 2.1+
