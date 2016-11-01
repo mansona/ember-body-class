@@ -24,9 +24,18 @@ export function initialize(instance) {
     classNames: [],
     bodyClasses: [], // Backwards compatibility
 
-    _getRouteName() {
-      const nameParts = this.get('routeName').split('.');
-      return nameParts[nameParts.length - 1];
+    _getRouteDepthClasses() {
+      let routeParts = this.get('routeName').split('.');
+      let routeDepthClasses = routeParts.slice(0);
+      let currentSelector = [];
+
+      routeParts.forEach((part)=> {
+        currentSelector.push(part);
+
+        routeDepthClasses.push(currentSelector.join(`-`));
+      });
+
+      return routeDepthClasses;
     },
 
     addClasses: Ember.on('activate', function() {
@@ -38,7 +47,9 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        $body.addClass(this._getRouteName());
+        this._getRouteDepthClasses().forEach((depthClass)=> {
+          $body.addClass(depthClass);
+        });
       }
     }),
 
@@ -51,7 +62,9 @@ export function initialize(instance) {
       });
 
       if (_includeRouteName) {
-        $body.removeClass(this._getRouteName());
+        this._getRouteDepthClasses().forEach((depthClass)=> {
+          $body.removeClass(depthClass);
+        });
       }
     }),
   });
