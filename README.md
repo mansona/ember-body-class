@@ -15,7 +15,7 @@ Easily add CSS classes on the `<body>`, including route names as well as loading
 
 By default, all of your routes will include CSS class names. This works for the
 whole hierarchy, so if you have a route nested at `application/dashboard/stats`,
-then you'll end up with `application`, `dashboard`, and `stats` classes.
+then you'll end up with `application`, `dashboard`, `stats`, `application-dashboard` and `application-dashboard-stats` classes.
 
 To disable this, see _options_ below.
 
