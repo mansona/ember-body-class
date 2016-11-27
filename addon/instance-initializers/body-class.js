@@ -1,10 +1,34 @@
 import Ember from 'ember';
 
-export function initialize(instance) {
-  if (!Ember.$) { // No jquery in fastboot
-    return;
+const impl = {
+
+  domService(document) {
+    return {
+      addClass(klazz) {
+        if (document.body.classList) {
+          document.body.classList.add(klazz);
+        } else {
+          let script = document.createElement('script');
+          script.setAttribute('type', 'text/javascript');
+          script.appendChild(document.createTextNode('document.body.classList.add("' + klazz + '");'));
+          document.body.appendChild(script);
+        }
+      },
+      removeClass(klazz) {
+        if (document.body.classList) {
+          document.body.classList.remove(klazz);
+        }
+      }
+    };
+  },
+
+  browser() {
+    return Ember.$('body');
   }
 
+};
+
+export function initialize(instance) {
   var config;
   if (instance.resolveRegistration) {
     // Ember 2.1+
@@ -24,6 +48,17 @@ export function initialize(instance) {
     classNames: [],
     bodyClasses: [], // Backwards compatibility
 
+    $body: Ember.computed(function() {
+      let container = Ember.getOwner ? Ember.getOwner(this) : this.container;
+      let domService = container.lookup('service:-document');
+
+      if (domService) {
+        return impl.domService(domService);
+      } else {
+        return impl.browser();
+      }
+    }),
+
     _getRouteDepthClasses() {
       let routeParts = this.get('routeName').split('.');
       let routeDepthClasses = routeParts.slice(0);
@@ -39,7 +74,7 @@ export function initialize(instance) {
     },
 
     addClasses: Ember.on('activate', function() {
-      const $body = Ember.$('body');
+      const $body = this.get('$body');
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           $body.addClass(klass);
@@ -54,7 +89,7 @@ export function initialize(instance) {
     }),
 
     removeClasses: Ember.on('deactivate', function() {
-      const $body = Ember.$('body');
+      const $body = this.get('$body');
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           $body.removeClass(klass);
