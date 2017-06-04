@@ -39,8 +39,11 @@ export function initialize(instance) {
     },
 
     addClasses: on('activate', function() {
+      this._setClassNamesOnBodyElement();
+    }),
+
+    _setClassNamesOnBodyElement() {
       const { body } = getOwner(this).lookup('service:-document');
-      
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           addClass(body, klass);
@@ -52,6 +55,18 @@ export function initialize(instance) {
           addClass(body, depthClass);
         });
       }
+    },
+
+    updateClasses: Ember.observer('bodyClasses.[]', 'classNames.[]', function() {
+      const { body } = getOwner(this).lookup('service:-document');
+
+      ['bodyClasses', 'classNames'].forEach((classes) => {
+        this.get(classes).forEach(function(klass) {
+          removeClass(body, klass)
+        });
+      });
+
+      this._setClassNamesOnBodyElement();
     }),
 
     removeClasses: on('deactivate', function() {
