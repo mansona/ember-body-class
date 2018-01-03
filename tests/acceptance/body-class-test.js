@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import startApp from '../../tests/helpers/start-app';
 
@@ -10,7 +11,7 @@ module('Acceptance | body class', {
   },
 
   afterEach: function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   }
 });
 
@@ -21,6 +22,6 @@ test('visiting', function(assert) {
     assert.equal(currentURL(), '/');
 
     /* bodyClass set in dummy application route */
-    assert.ok(Ember.$('body').hasClass('yolo'), "Body class set");
+    assert.ok($('body').hasClass('yolo'), "Body class set");
   });
 });
