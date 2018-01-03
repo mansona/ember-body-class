@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+import Route from '@ember/routing/route';
+import $ from 'jquery';
 
 export function initialize(instance) {
-  if (!Ember.$) { // No jquery in fastboot
+  if (!$) { // No jquery in fastboot
     return;
   }
 
@@ -20,9 +22,12 @@ export function initialize(instance) {
     _includeRouteName = false;
   }
 
-  Ember.Route.reopen({
-    classNames: [],
-    bodyClasses: [], // Backwards compatibility
+  Route.reopen({
+    init() {
+      this._super(...arguments);
+      this.classNames = [];
+      this.bodyClasses = []; // Backwards compatibility
+    },
 
     _getRouteDepthClasses() {
       let routeParts = this.get('routeName').split('.');
@@ -38,8 +43,8 @@ export function initialize(instance) {
       return routeDepthClasses;
     },
 
-    addClasses: Ember.on('activate', function() {
-      const $body = Ember.$('body');
+    addClasses: on('activate', function() {
+      const $body = $('body');
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           $body.addClass(klass);
@@ -53,8 +58,8 @@ export function initialize(instance) {
       }
     }),
 
-    removeClasses: Ember.on('deactivate', function() {
-      const $body = Ember.$('body');
+    removeClasses: on('deactivate', function() {
+      const $body = $('body');
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           $body.removeClass(klass);

@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import BodyClassMixin from 'ember-body-class/mixins/body-class';
 
-export default Ember.Route.extend(BodyClassMixin, {
-  bodyClasses: ["yolo"]
+export default Route.extend(BodyClassMixin, {
+  init() {
+    this._super(...arguments);
+    this.bodyClasses = ['yolo'];
+  },
 });

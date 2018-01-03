@@ -1,29 +1,46 @@
+---
 language: node_js
 node_js:
-- '0.12'
+  # we recommend testing addons with the same minimum supported node version as Ember CLI
+  # so that your addon works for all apps
+  - "4"
+
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
+
 cache:
   directories:
-  - node_modules
+    - $HOME/.npm
+
 env:
-- EMBER_TRY_SCENARIO=default
-- EMBER_TRY_SCENARIO=ember-release
-- EMBER_TRY_SCENARIO=ember-beta
-- EMBER_TRY_SCENARIO=ember-canary
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - EMBER_TRY_SCENARIO=ember-lts-2.12
+    - EMBER_TRY_SCENARIO=ember-lts-2.16
+    - EMBER_TRY_SCENARIO=ember-release
+    - EMBER_TRY_SCENARIO=ember-beta
+    - EMBER_TRY_SCENARIO=ember-canary
+    - EMBER_TRY_SCENARIO=ember-default
+
 matrix:
   fast_finish: true
   allow_failures:
-  - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-- npm config set spin false
-- npm install -g npm@^2
-install:
-- npm install -g bower
-- npm install
-- bower install
+  - npm config set spin false
+  - npm install -g npm@4
+  - npm --version
+
 script:
-- ember try $EMBER_TRY_SCENARIO test
-notifications:
-  slack:
-    secure: fRapTakBKLVJMxSYQ8vFcMkAqqHagFxqyF3DijxVSUH7IMsZ+ixK7FHRQ45FiQajX6PQwc3GQosP228zXlZpQvCQlEfhoGqKRk222MXKRyhiU5ZzwNQlzPzKrNMzrjLWp0NK7MZAINXcQXRWsAaOKhHSDXIYjUCopXzczVEUimUNi1DDnijRx/KXUuSqt1qABH8DHOlNJ1twHDolHE81hjtNsP3mBs7Veg+WCTkYSXCvh5sUguFkS2WJyN6DtJdhoery9TtntUXkERlyopuevd9675vKugqRpfxtLdtsRdD1G6bYvK+nr5x3fww+hmjMzzlWs4W4z9X8Usq0DDFrhvo0g4JLzkP4bfxslp9K/dN71RBau0mBlMZLhdjj8di1hWWsEYX7CPIC898hYpBXOLR23NPz+nkoRtyxarink6YhPS0KIfu9UgmTgG25OJzfu8zzlns0UcqlY+D/cF0jmm6EvINsJ/mtGj4ZweZ09uCz8hER6gZ8i9sOuc0XZ3/WJ/lkqjZCHs9l4ONfoIeJdaVjO6+bKci0RAY32Ek2I5XMNvXHNyrULYa7zFZt8k/20YOZ/t1jS+olB3TGfPWSeCTIAB4BdbZ5LWtwuWgQO6k2C78iUkdpRlnVoYxPWc3w1AaluqMNoxJszCZOT0moMfmoOkKpiwSP9JybQJTUU5Y=
+  - npm run lint:js
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
