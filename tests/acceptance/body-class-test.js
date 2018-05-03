@@ -1,26 +1,26 @@
-import Ember from 'ember';
+import { currentURL, visit } from '@ember/test-helpers';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import startApp from '../../tests/helpers/start-app';
 
 var application;
 
-module('Acceptance | body class', {
-  beforeEach: function() {
+module('Acceptance | body class', function(hooks) {
+  hooks.beforeEach(function() {
     application = startApp();
-  },
+  });
 
-  afterEach: function() {
-    Ember.run(application, 'destroy');
-  }
-});
+  hooks.afterEach(function() {
+    run(application, 'destroy');
+  });
 
-test('visiting', function(assert) {
-  visit('/');
+  test('visiting', async function(assert) {
+    await visit('/');
 
-  andThen(function() {
     assert.equal(currentURL(), '/');
 
     /* bodyClass set in dummy application route */
-    assert.ok(Ember.$('body').hasClass('yolo'), "Body class set");
+    assert.ok($('body').hasClass('yolo'), "Body class set");
   });
 });
