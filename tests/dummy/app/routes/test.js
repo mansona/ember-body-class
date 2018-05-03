@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  bodyClasses: ["another-yolo"]
+  bodyClasses: Object.freeze(["another-yolo"])
 });

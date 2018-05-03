@@ -22,7 +22,7 @@ export function initialize(instance) {
 
   Route.reopen({
     classNames: [],
-    bodyClasses: [], // Backwards compatibility
+    bodyClasses: Object.freeze([]),
 
     _getRouteDepthClasses() {
       let routeParts = this.get('routeName').split('.');

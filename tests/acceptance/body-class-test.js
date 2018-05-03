@@ -1,26 +1,26 @@
-import { currentURL, visit } from '@ember/test-helpers';
-import $ from 'jquery';
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
-import startApp from '../../tests/helpers/start-app';
+import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-var application;
+module('Acceptance | ember body class', function(hooks) {
+  setupApplicationTest(hooks);
 
-module('Acceptance | body class', function(hooks) {
-  hooks.beforeEach(function() {
-    application = startApp();
-  });
-
-  hooks.afterEach(function() {
-    run(application, 'destroy');
-  });
-
-  test('visiting', async function(assert) {
+  test('visiting /', async function(assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
 
     /* bodyClass set in dummy application route */
-    assert.ok($('body').hasClass('yolo'), "Body class set");
+    assert.ok(document.body.classList.contains('yolo'), "yolo class is missing");
+  });
+
+  test('visiting /test', async function(assert) {
+    await visit('/test');
+
+    assert.equal(currentURL(), '/test');
+
+    /* bodyClass set in dummy application route */
+    assert.ok(document.body.classList.contains('yolo'), "yolo class is missing");
+    assert.ok(document.body.classList.contains('another-yolo'), "another-yolo class is missing");
   });
 });
