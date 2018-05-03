@@ -1,30 +1,30 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+import { addClass, removeClass } from '../util/bodyClass';
+
+export default Mixin.create({
   actions: {
     loading(/* transition, route */) {
-      if (!Ember.$) { // No jquery in fastboot
-        return true;
-      }
+      const document = this.owner.lookup('service:-document');
+      const body = document.body;
 
-      Ember.$('body').addClass("loading");
+      addClass(body, 'loading');
 
       this.router.on('didTransition', function() {
-        Ember.$('body').removeClass("loading");
+        removeClass(body, 'loading');
       });
 
       return true;
     },
 
     error: function(/* error, transition */) {
-      if (!Ember.$) { // No jquery in fastboot
-        return true;
-      }
+      const document = this.owner.lookup('service:-document');
+      const body = document.body;
 
-      Ember.$('body').addClass("error");
+      addClass(body, 'error');
 
       this.router.on('didTransition', function() {
-        Ember.$('body').removeClass("error");
+        removeClass(body, 'error');
       });
 
       return true;
