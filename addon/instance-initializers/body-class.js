@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+import Route from '@ember/routing/route';
+
+import { addClass, removeClass } from '../util/bodyClass';
 
 export function initialize(instance) {
-  if (!Ember.$) { // No jquery in fastboot
-    return;
-  }
-
   var config;
+
   if (instance.resolveRegistration) {
     // Ember 2.1+
     // http://emberjs.com/blog/2015/08/16/ember-2-1-beta-released.html#toc_registry-and-container-reform
@@ -20,7 +20,7 @@ export function initialize(instance) {
     _includeRouteName = false;
   }
 
-  Ember.Route.reopen({
+  Route.reopen({
     classNames: [],
     bodyClasses: [], // Backwards compatibility
 
@@ -38,32 +38,35 @@ export function initialize(instance) {
       return routeDepthClasses;
     },
 
-    addClasses: Ember.on('activate', function() {
-      const $body = Ember.$('body');
+    addClasses: on('activate', function() {
+      const document = instance.lookup('service:-document');
+      const body = document.body;
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
-          $body.addClass(klass);
+          addClass(body, klass);
         });
       });
 
       if (_includeRouteName) {
         this._getRouteDepthClasses().forEach((depthClass)=> {
-          $body.addClass(depthClass);
+          addClass(body, depthClass);
         });
       }
     }),
 
-    removeClasses: Ember.on('deactivate', function() {
-      const $body = Ember.$('body');
+    removeClasses: on('deactivate', function() {
+      const document = instance.lookup('service:-document');
+      const body = document.body;
+
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
-          $body.removeClass(klass);
+          removeClass(body, klass)
         });
       });
 
       if (_includeRouteName) {
         this._getRouteDepthClasses().forEach((depthClass)=> {
-          $body.removeClass(depthClass);
+          removeClass(body, depthClass)
         });
       }
     }),
