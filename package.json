@@ -13,14 +13,17 @@
     "error"
   ],
   "license": "MIT",
-  "author": "Add Jam",
+  "contributors": [
+    "Chris Manson <chris@stonecircle.io> (https://stonecircle.io)",
+    "Add Jam (https://addjam.com/)"
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AddJam/ember-body-class"
+    "url": "https://github.com/stonecircle/ember-body-class"
   },
   "scripts": {
     "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",
@@ -64,5 +67,5 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "homepage": "https://github.com/AddJam/ember-body-class"
+  "homepage": "https://github.com/stonecircle/ember-body-class"
 }
