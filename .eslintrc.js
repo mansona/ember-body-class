@@ -45,6 +45,20 @@ module.exports = {
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
         // add your custom rules and overrides for node files here
       })
+    },
+    // fastboot tests
+    {
+      files: [
+        'fastboot-tests/*-test.js',
+      ],
+      env: {
+        browser: false,
+        node: true,
+        mocha: true,
+      },
+      rules: {
+        'ember/no-global-jquery': 0
+      }
     }
   ]
 };

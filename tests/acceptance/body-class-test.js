@@ -23,4 +23,10 @@ module('Acceptance | ember body class', function(hooks) {
     assert.ok(document.body.classList.contains('yolo'), "yolo class is missing");
     assert.ok(document.body.classList.contains('another-yolo'), "another-yolo class is missing");
   });
+
+  test('make sure there are no null values', async function(assert) {
+    await visit('/test');
+
+    assert.ok(!document.body.classList.contains('null'), "body has null class");
+  })
 });
