@@ -39,7 +39,7 @@ matrix:
   - env: EMBER_TRY_SCENARIO=ember-canary
 before_install:
   - npm config set spin false
-  - npm install -g npm@4
+  - npm install -g npm@6
   - npm --version
 
 script:
@@ -47,3 +47,11 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+
+jobs:
+  include:
+    - stage: Fastboot Tests
+      script: ember fastboot:test
+      # Keep in mind to overwrite these here
+      node_js: 8
+      env: EMBER_TRY_SCENARIO=ember-default #not used
