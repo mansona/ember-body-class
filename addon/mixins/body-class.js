@@ -1,7 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { getOwner } from '@ember/application';
 
-import { addClass, removeClass } from '../util/bodyClass';
+import { addClass, removeClass } from '../utils/body-class';
 
 export default Mixin.create({
   actions: {

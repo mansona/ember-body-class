@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
-import { addClass, removeClass } from '../util/bodyClass';
+
+import { addClass, removeClass } from '../utils/body-class';
 
 export function initialize(instance) {
   var config;
