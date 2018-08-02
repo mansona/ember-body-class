@@ -1,6 +1,4 @@
-import { on } from '@ember/object/evented';
 import Route from '@ember/routing/route';
-
 import { addClass, removeClass } from '../util/bodyClass';
 
 export function initialize(instance) {
@@ -38,7 +36,8 @@ export function initialize(instance) {
       return routeDepthClasses;
     },
 
-    addClasses: on('activate', function() {
+    activate() {
+      this._super(...arguments);
       const document = instance.lookup('service:-document');
       const body = document.body;
       ['bodyClasses', 'classNames'].forEach((classes) => {
@@ -52,9 +51,10 @@ export function initialize(instance) {
           addClass(body, depthClass);
         });
       }
-    }),
+    },
 
-    removeClasses: on('deactivate', function() {
+    deactivate() {
+      this._super(...arguments);
       const document = instance.lookup('service:-document');
       const body = document.body;
 
@@ -69,7 +69,7 @@ export function initialize(instance) {
           removeClass(body, depthClass)
         });
       }
-    }),
+    }
   });
 }
 
