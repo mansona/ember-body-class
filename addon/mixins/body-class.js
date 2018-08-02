@@ -1,11 +1,12 @@
 import Mixin from '@ember/object/mixin';
+import { getOwner } from '@ember/application';
 
 import { addClass, removeClass } from '../util/bodyClass';
 
 export default Mixin.create({
   actions: {
     loading(/* transition, route */) {
-      const document = this.owner.lookup('service:-document');
+      const document = getOwner(this).lookup('service:-document');
       const body = document.body;
 
       addClass(body, 'loading');
@@ -18,7 +19,7 @@ export default Mixin.create({
     },
 
     error: function(/* error, transition */) {
-      const document = this.owner.lookup('service:-document');
+      const document = getOwner(this).lookup('service:-document');
       const body = document.body;
 
       addClass(body, 'error');
