@@ -1,6 +1,6 @@
 import { on } from '@ember/object/evented';
 import Route from '@ember/routing/route';
-
+import { getOwner } from '@ember/application';
 import { addClass, removeClass } from '../util/bodyClass';
 
 export function initialize(instance) {
@@ -39,8 +39,8 @@ export function initialize(instance) {
     },
 
     addClasses: on('activate', function() {
-      const document = instance.lookup('service:-document');
-      const body = document.body;
+      const { body } = getOwner(this).lookup('service:-document');
+      
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
           addClass(body, klass);
@@ -55,8 +55,7 @@ export function initialize(instance) {
     }),
 
     removeClasses: on('deactivate', function() {
-      const document = instance.lookup('service:-document');
-      const body = document.body;
+      const { body } = getOwner(this).lookup('service:-document');
 
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
