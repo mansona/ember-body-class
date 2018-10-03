@@ -47,9 +47,5 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
-  ENV['ember-body-class'] = {
-    //includeRouteName: false
-  }
-
   return ENV;
 };
