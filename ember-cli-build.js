@@ -2,6 +2,8 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
+Error.stackTraceLimit = Infinity;
+
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
