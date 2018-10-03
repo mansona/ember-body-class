@@ -8,6 +8,10 @@ Easily add CSS classes on the `<body>`, including route names as well as loading
 
 ## Usage
 
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
+
 ### Route name classes
 
 By default, all of your routes will include CSS class names. This works for the
