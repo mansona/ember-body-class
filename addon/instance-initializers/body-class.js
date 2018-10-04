@@ -1,4 +1,5 @@
 import { on } from '@ember/object/evented';
+import { observer } from '@ember/object';
 import Route from '@ember/routing/route';
 import { getOwner } from '@ember/application';
 import { addClass, removeClass } from '../util/bodyClass';
@@ -57,7 +58,7 @@ export function initialize(instance) {
       }
     },
 
-    updateClasses: Ember.observer('bodyClasses.[]', 'classNames.[]', function() {
+    updateClasses: observer('bodyClasses.[]', 'classNames.[]', function() {
       const { body } = getOwner(this).lookup('service:-document');
 
       ['bodyClasses', 'classNames'].forEach((classes) => {
