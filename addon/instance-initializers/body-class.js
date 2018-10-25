@@ -63,7 +63,7 @@ export function initialize(instance) {
 
       ['bodyClasses', 'classNames'].forEach((classes) => {
         this.get(classes).forEach(function(klass) {
-          removeClass(body, klass)
+          removeClass(body, klass);
         });
       });
 
