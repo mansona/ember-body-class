@@ -31,7 +31,7 @@ module('Acceptance | ember body class', function(hooks) {
   });
 
   test('body class updated when classNames route property is updated', async function(assert){
-    visit('/');
+    await visit('/');
 
     await click('button.add-body-class');
     assert.ok(document.body.classList.contains('dynamic-yolo'), "dynamic-yolo added");
