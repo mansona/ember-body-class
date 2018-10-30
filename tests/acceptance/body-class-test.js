@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
+import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | ember body class', function(hooks) {
@@ -28,5 +28,13 @@ module('Acceptance | ember body class', function(hooks) {
     await visit('/test');
 
     assert.ok(!document.body.classList.contains('null'), "body has null class");
-  })
+  });
+
+  test('body class updated when classNames route property is updated', async function(assert){
+    await visit('/');
+
+    await click('button.add-body-class');
+    assert.ok(document.body.classList.contains('dynamic-yolo'), "dynamic-yolo added");
+  });
 });
+
