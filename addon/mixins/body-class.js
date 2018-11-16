@@ -5,13 +5,13 @@ import { addClass, removeClass } from '../util/bodyClass';
 
 export default Mixin.create({
   actions: {
-    loading(/* transition, route */) {
+    loading(transition) {
       const document = getOwner(this).lookup('service:-document');
       const body = document.body;
 
       addClass(body, 'loading');
 
-      this.router.on('didTransition', function() {
+      transition.finally(function() {
         removeClass(body, 'loading');
       });
 
