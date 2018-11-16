@@ -24,9 +24,13 @@ export default Mixin.create({
 
       addClass(body, 'error');
 
-      this.router.on('didTransition', function() {
-        removeClass(body, 'error');
-      });
+      let router = this._router
+
+      if(router) {
+        router.on('didTransition', function() {
+          removeClass(body, 'error');
+        });
+      }
 
       return true;
     }
