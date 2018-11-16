@@ -1,4 +1,9 @@
 
+1.1.2 / 2018-11-16
+==================
+
+  * adding tests and removed deprecation for ember-routing.route-router #26 from @mansona
+
 1.1.1 / 2018-11-16
 ==================
 
