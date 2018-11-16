@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('test');
   this.route('slow');
+  this.route('bad');
 });
 
 export default Router;

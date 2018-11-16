@@ -20,4 +20,14 @@ module('Acceptance | substates', function(hooks) {
 
     assert.equal(currentURL(), '/slow');
   });
+
+  test('error class is added correctly', async function(assert) {
+    await visit('/bad');
+
+    assert.ok(document.body.classList.contains('error'), "error class is missing");
+
+    await visit('/');
+
+    assert.ok(!document.body.classList.contains('error'), "error class is still there after page load");
+  })
 });
