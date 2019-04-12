@@ -25,7 +25,7 @@ To disable this, see _options_ below.
 Adding the `loading` and `error` classes requires you to include a mixin in your
 application route. Include it like this:
 
-```
+```js
 import Ember from 'ember';
 import BodyClassMixin from 'ember-body-class/mixins/body-class';
 
@@ -36,7 +36,7 @@ export default Ember.Route.extend(BodyClassMixin, { });
 All routes have a `classNames` attribute of type Array. If you wanted to add a
 class `strawberry-jam` to your route, it would look like this:
 
-```
+```js
 export default Ember.Route.extend({
   classNames: ["strawberry-jam"]
 })
@@ -46,7 +46,7 @@ export default Ember.Route.extend({
 
 You can disable route name classes being added in your environment.js like this.
 
-```
+```js
 ENV['ember-body-class'] = {
   includeRouteName: false
 }
