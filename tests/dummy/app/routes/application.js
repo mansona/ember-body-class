@@ -3,7 +3,7 @@ import BodyClassMixin from 'ember-body-class/mixins/body-class';
 import { set } from '@ember/object';
 
 export default Route.extend(BodyClassMixin, {
-  bodyClasses: Object.freeze(["yolo"]),
+  bodyClasses: ["yolo"],
   classNames: ["ok"],
 
   actions: {

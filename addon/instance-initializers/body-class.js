@@ -23,7 +23,7 @@ export function initialize(instance) {
 
   Route.reopen({
     classNames: [],
-    bodyClasses: Object.freeze([]),
+    bodyClasses: [],
 
     _getRouteDepthClasses() {
       let routeParts = this.get('routeName').split('.');
