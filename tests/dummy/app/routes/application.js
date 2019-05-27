@@ -3,8 +3,13 @@ import BodyClassMixin from 'ember-body-class/mixins/body-class';
 import { set } from '@ember/object';
 
 export default Route.extend(BodyClassMixin, {
-  bodyClasses: ["yolo"],
   classNames: ["ok"],
+
+  init() {
+    this._super(...arguments);
+
+    set(this, 'bodyClasses', ["yolo"]);
+  },
 
   actions: {
     addBodyClass() {
