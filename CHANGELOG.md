@@ -1,4 +1,10 @@
 
+1.1.4 / 2019-10-18
+==================
+
+  * Remove Object.freeze to fix IE11 #31 from @ctjhoa
+  * Updating dependencies to fix tests #28 from @ctjhoa
+
 1.1.3 / 2018-11-16
 ==================
 
