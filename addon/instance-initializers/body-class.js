@@ -1,5 +1,5 @@
 import { on } from '@ember/object/evented';
-import { observer } from '@ember/object';
+import { observer, set } from '@ember/object';
 import Route from '@ember/routing/route';
 import { getOwner } from '@ember/application';
 import { addClass, removeClass } from '../util/bodyClass';
@@ -23,7 +23,13 @@ export function initialize(instance) {
 
   Route.reopen({
     classNames: [],
-    bodyClasses: Object.freeze([]),
+    bodyClasses: null,
+
+    init() {
+      this._super(...arguments);
+
+      set(this, 'bodyClasses', []);
+    },
 
     _getRouteDepthClasses() {
       let routeParts = this.get('routeName').split('.');
