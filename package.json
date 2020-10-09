@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/stonecircle/ember-body-class"
+    "url": "https://github.com/mansona/ember-body-class"
   },
   "license": "MIT",
   "directories": {
@@ -22,7 +22,7 @@
     "test": "tests"
   },
   "contributors": [
-    "Chris Manson <chris@stonecircle.io> (https://stonecircle.io)",
+    "Chris Manson <chris@manson.ie>",
     "Add Jam (https://addjam.com/)"
   ],
   "scripts": {
@@ -72,5 +72,5 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "homepage": "https://github.com/stonecircle/ember-body-class"
+  "homepage": "https://github.com/mansona/ember-body-class"
 }
