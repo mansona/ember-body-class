@@ -1,12 +1,27 @@
 [![npm version](https://badge.fury.io/js/ember-body-class.svg)](http://badge.fury.io/js/ember-body-class)
 [![Travis CI](https://travis-ci.org/AddJam/ember-body-class.svg)](https://travis-ci.org/AddJam/ember-body-class)
 
-# ember-body-class
+ember-body-class
+==============================================================================
 
 Easily add CSS classes on the `<body>`, including route names as well as loading and error states.
+
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
 `ember install ember-body-class`
 
-## Usage
+Usage
+------------------------------------------------------------------------------
 
 * `npm run lint:hbs`
 * `npm run lint:js`
@@ -42,7 +57,8 @@ export default Ember.Route.extend({
 })
 ```
 
-## Options
+Options
+------------------------------------------------------------------------------
 
 You can disable route name classes being added in your environment.js like this.
 
@@ -52,14 +68,13 @@ ENV['ember-body-class'] = {
 }
 ```
 
-## License
+Contributing
+------------------------------------------------------------------------------
 
-The MIT License (MIT)
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-Copyright (c) 2015
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+License
+------------------------------------------------------------------------------
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This project is licensed under the [MIT License](LICENSE.md).
