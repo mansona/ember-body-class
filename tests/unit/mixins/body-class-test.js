@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins, ember/no-new-mixins */
 import EmberObject from '@ember/object';
 import BodyClassMixin from 'ember-body-class/mixins/body-class';
 import { module, test } from 'qunit';
