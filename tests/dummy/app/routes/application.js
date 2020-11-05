@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins */
 import Route from '@ember/routing/route';
 import BodyClassMixin from 'ember-body-class/mixins/body-class';
 import { set } from '@ember/object';

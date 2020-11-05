@@ -1,20 +1,12 @@
+/* eslint-disable ember/no-get, ember/no-observers */
 import { on } from '@ember/object/evented';
 import { observer, set } from '@ember/object';
 import Route from '@ember/routing/route';
 import { getOwner } from '@ember/application';
 import { addClass, removeClass } from '../util/bodyClass';
+import config from 'ember-get-config';
 
-export function initialize(instance) {
-  var config;
-
-  if (instance.resolveRegistration) {
-    // Ember 2.1+
-    // http://emberjs.com/blog/2015/08/16/ember-2-1-beta-released.html#toc_registry-and-container-reform
-    config = instance.resolveRegistration('config:environment');
-  } else {
-    config = instance.container.lookupFactory('config:environment');
-  }
-
+export function initialize() {
   // Default to true when not set
   let _includeRouteName = true;
   if (config['ember-body-class'] && config['ember-body-class'].includeRouteName === false) {

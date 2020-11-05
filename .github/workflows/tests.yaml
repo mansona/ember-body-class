@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [6.x, 8.x]
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -27,10 +27,29 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
           ${{ runner.OS }}-
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
-    - run: npm test
+    - run: npm run lint
+    - run: npm run test:ember
+      env:
+        CI: true
+
+  ember_floating_dependencies:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm install --no-package-lock
+    - run: npm run test:ember
       env:
         CI: true
 
@@ -39,7 +58,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -47,9 +66,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
@@ -60,7 +78,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -68,20 +86,119 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
         EMBER_TRY_SCENARIO: ember-lts-2.18
+
+  ember_try_3_4:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-lts-3.4
+
+  ember_try_3_8:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-lts-3.8
+
+  ember_try_3_12:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-lts-3.12
+
+  ember_try_3_16:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-lts-3.16
+
+  ember_try_3_20:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-lts-3.20
 
   ember_try_release:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -89,9 +206,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
@@ -102,7 +218,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -110,9 +226,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
@@ -123,7 +238,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -131,9 +246,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
@@ -144,7 +258,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -152,20 +266,39 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true
         EMBER_TRY_SCENARIO: ember-default-with-jquery
+
+  ember_try_classic:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g npm@7
+    - run: npm ci
+    - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env:
+        CI: true
+        EMBER_TRY_SCENARIO: ember-classic
 
   ember_try_fastboot_addon_tests:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -173,9 +306,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g npm@6
+    - run: npm i -g npm@7
     - run: npm ci
-    - run: npm run lint:js
     - run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
       env:
         CI: true

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-jquery */
 'use strict';
 
 const expect = require('chai').expect;
