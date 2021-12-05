@@ -133,12 +133,23 @@ module.exports = async function() {
             '@ember/jquery': '^0.5.1'
           }
         }
-      }, {
-        name: 'fastboot-addon-tests',
-        command: 'ember fastboot:test',
+      },
+      {
+        name: 'no-deprecations',
         npm: {
-          devDependencies: {}
-        }
+          devDependencies: {
+            'ember-deprecation-error': '*',
+          },
+        },
+      },
+      {
+        name: 'ember-release-no-deprecations',
+        npm: {
+          devDependencies: {
+            'ember-source': await getChannelURL('release'),
+            'ember-deprecation-error': '*',
+          },
+        },
       },
     ]
   };

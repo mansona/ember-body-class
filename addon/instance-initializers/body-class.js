@@ -69,6 +69,11 @@ export function initialize() {
     }),
 
     removeClasses: on('deactivate', function() {
+      // for some reason we're getting deactivate called too early and it's
+      // removing the classes in fastboot only.
+      if (typeof FastBoot !== 'undefined') {
+        return;
+      }
       const { body } = getOwner(this).lookup('service:-document');
 
       ['bodyClasses', 'classNames'].forEach((classes) => {
