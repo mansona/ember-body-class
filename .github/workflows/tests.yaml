@@ -58,7 +58,8 @@ jobs:
           - ember-canary
           - ember-default-with-jquery
           - ember-classic
-          - fastboot-addon-tests
+          - no-deprecations
+          - ember-release-no-deprecations
 
     steps:
       - uses: actions/checkout@v2
