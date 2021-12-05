@@ -1,3 +1,8 @@
+2.1.1 / 2021-12-05
+==================
+
+  * fix ember-body-class for fastboot initial render #45 from @mansona
+
 2.1.0 / 2021-11-23
 ==================
 
