@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-new-mixins */
+/* eslint-disable ember/no-new-mixins, prettier/prettier */
 import Mixin from '@ember/object/mixin';
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';

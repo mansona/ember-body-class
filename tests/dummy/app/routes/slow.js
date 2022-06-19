@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-mixins */
+/* eslint-disable ember/no-mixins, ember/no-classic-classes, prettier/prettier */
 import Route from '@ember/routing/route';
 import BodyClassMixin from 'ember-body-class/mixins/body-class';
 

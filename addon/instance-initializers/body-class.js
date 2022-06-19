@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-get, ember/no-observers */
+/* eslint-disable ember/no-get, ember/no-observers, prettier/prettier */
 import { on } from '@ember/object/evented';
 import { observer, set } from '@ember/object';
 import Route from '@ember/routing/route';

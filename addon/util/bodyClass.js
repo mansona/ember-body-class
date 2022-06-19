@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export function addClass(element, klass) {
   if(typeof FastBoot === 'undefined') {
     element.classList.add(klass);
