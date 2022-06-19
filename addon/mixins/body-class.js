@@ -1,10 +1,12 @@
 /* eslint-disable ember/no-new-mixins */
 import Mixin from '@ember/object/mixin';
 import { getOwner } from '@ember/application';
+import { inject as service } from '@ember/service';
 
 import { addClass, removeClass } from '../util/bodyClass';
 
 export default Mixin.create({
+  router: service(),
   actions: {
     loading(transition) {
       const document = getOwner(this).lookup('service:-document');
@@ -25,13 +27,11 @@ export default Mixin.create({
 
       addClass(body, 'error');
 
-      let router = this._router
-
-      if(router) {
-        router.on('didTransition', function() {
+      this.router.on('routeDidChange', () => {
+        if(this.router.currentRouteName !== 'error') {
           removeClass(body, 'error');
-        });
-      }
+        }
+      });
 
       return true;
     }
