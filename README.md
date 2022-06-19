@@ -10,8 +10,8 @@ Easily add CSS classes on the `<body>`, including route names as well as loading
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.16 or above
-* Ember CLI v2.13 or above
+* Ember.js v2.16 or above
+* Ember CLI v2.16 or above
 * Node.js v10 or above
 
 
