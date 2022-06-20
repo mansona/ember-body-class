@@ -1,3 +1,11 @@
+3.0.0 / 2022-06-20
+==================
+* update ember-auto-import to support Ember 4.x #59 from @mansona
+* Update Ember to 3.28 with ember-cli-update #51 from @mansona
+* remove router deprecation #57 from @mansona
+* Breaking: drop support for Ember &lt; 3.8 #58 from @mansona
+* Breaking: drop support for node &lt; 14 #52 from @mansona
+
 2.1.1 / 2021-12-05
 ==================
 
