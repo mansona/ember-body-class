@@ -1,5 +1,5 @@
-{{!-- template-lint-disable require-button-type no-action no-curly-component-invocation --}}
+{{!-- template-lint-disable no-action --}}
 <h2 id="title">Welcome to Ember</h2>
-{{#link-to 'test'}}Index{{/link-to}}
+<LinkTo @route='test'>Index</LinkTo>
 {{outlet}}
-<button class="add-body-class" {{action "addBodyClass"}}> Add dynamic-yolo class </button>
+<button class="add-body-class" {{action "addBodyClass"}} type="button"> Add dynamic-yolo class </button>
